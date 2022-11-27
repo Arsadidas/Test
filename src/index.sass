@@ -1,0 +1,143 @@
+@use 'sass:math'
+
+@function calcWidth1920($n)
+  @return $n*math.div(100vw,1920)
+
+*
+  margin: 0
+  padding: 0
+  font-family: 'Roboto Mono', monospace
+//---------------------------------Header------>
+header
+  background-color: brown
+
+.header
+  padding: calcWidth1920(25)
+  margin: 0 auto
+  max-width: calcWidth1920(1200)
+
+  .headerTitle
+    text-align: center
+    color: white
+    font-size: calcWidth1920(18)
+//---------------------------------Header------>
+
+//---------------------------------Main------>
+.mainTitle
+  position: relative
+  margin: calcWidth1920(40) calcWidth1920(0)
+  text-align: center
+  font-size: calcWidth1920(20)
+
+.add
+  position: absolute
+  align-items: center
+  cursor: pointer
+  right: 500px
+  top: 119px
+  font-size: 25px
+  border-radius: 20px
+  padding: 2px 7px
+
+  img
+    width: 13px
+    height: 13px
+    transform: rotate(45deg)
+    transition: 0.2s
+
+    &:hover
+      transform: rotate(180deg)
+
+.mainContent
+  max-width: calcWidth1920(1300)
+  text-align: center
+  margin: 0 auto
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+
+.queueTitle, .developmentTitle, .doneTitle
+  cursor: pointer
+  border-right: 2px solid brown
+  transition: 0.5s
+  margin-bottom: 20px
+  padding-bottom: 10px
+
+  &:hover
+    transform: scale(1.1)
+
+.todoBodyText
+  max-width: calcWidth1920(350)
+  margin: 0 auto calcWidth1920(15)
+  padding-bottom: 10px
+  padding-top: 10px
+  background-color: #ec3e3e
+  border-radius: 10px
+  align-items: center
+  cursor: grab
+//---------------------------------Main------>
+
+//---------------------------------Modal------>
+.modal, .modalActive
+  z-index: 150
+  top: 0
+  left: 0
+  height: 100vh
+  width: 100vw
+  position: fixed
+  background-color: rgba(34, 34, 34, 0.44)
+  display: flex
+  justify-content: center
+  align-items: center
+  transition-property: opacity, transform
+  transition-timing-function: linear
+  transition-duration: 0.4s
+
+.modal
+  pointer-events: none
+  opacity: 0
+
+.modalActive
+  opacity: 1
+
+.content, .contentActive
+  transition: 0.4s all
+
+.content
+  transform: scale(0.3)
+
+.contentActive
+  transform: scale(1)
+//---------------------------------Modal------>
+
+//---------------------------------ModalFunc------>
+.modalFuncMain
+  width: calcWidth1920(900)
+  height: calcWidth1920(600)
+  border-radius: 10px
+  background-color: white
+  padding: 20px
+  position: relative
+
+  .closeModal
+    font-size: calcWidth1920(20)
+    position: absolute
+    left: 955px
+    top: 20px
+
+    img
+      width: 15px
+      height: 15px
+      cursor: pointer
+
+.modalTitle
+  text-align: center
+  font-size: calcWidth1920(18)
+  margin-bottom: calcWidth1920(20)
+
+.formBlock
+  max-width: calcWidth1920(800)
+  margin: 0 auto
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  flex-wrap: wrap
+//---------------------------------ModalFunc------>
