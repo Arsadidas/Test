@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Header from './components/Header/Header';
 import MainBlock from './components/MainBlock/MainBlock';
-import {data} from './data'
 import {Route, Routes} from "react-router-dom";
-import CorrectTodo from "./components/CorrectTodo";
+import CurrentTodo from "./components/CurrentTodo/CurrentTodo";
 
 function App() {
 
@@ -22,7 +21,8 @@ function App() {
             <Header/>
             <Routes>
                 <Route path='/' element={<MainBlock array={state}/>}/>
-                <Route path='/todo/:id' element={<CorrectTodo state={state}/>}/>
+                <Route path='/todo/:id' element={
+                    <CurrentTodo state={state}/>}/>
             </Routes>
 
         </>

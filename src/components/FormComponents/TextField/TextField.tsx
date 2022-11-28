@@ -26,7 +26,7 @@ const TextFieldInput = (props: FormInputProps) => {
                     value={value}
                     label={label}
                     variant="outlined"
-                    sx={{marginBottom, width}}
+                    sx={{marginBottom, width, marginRight: 2}}
                 />
             )}
         />

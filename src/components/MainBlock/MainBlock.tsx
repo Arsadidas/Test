@@ -4,7 +4,7 @@ import {useState} from 'react'
 import Modal from '../Modal/Modal';
 import ModalFunc from '../ModalFunc/ModalFunc';
 // @ts-ignore
-import ex from '../../x.png'
+import ex from '../../assets/x.png'
 
 export interface ITodo {
     id?: number
@@ -13,11 +13,6 @@ export interface ITodo {
     dataStart?: string | Date
     dataEnd?: string | Date
     priority?: string
-    status?: string
-}
-
-export interface IStatus {
-    id?: number
     status?: string
 }
 

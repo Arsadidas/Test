@@ -8,14 +8,16 @@ import {DatePicker} from '@mui/x-date-pickers';
 interface Props {
     date: Dayjs | null
     setDate: React.Dispatch<React.SetStateAction<Dayjs | null>>
+    label: string
 }
 
-const Date: React.FC<Props> = ({setDate, date}) => {
+const Date: React.FC<Props> = ({setDate, date, label}) => {
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-                label="End for To do"
+                className='date'
+                label={label}
                 value={date}
                 onChange={(newValue: any) => {
                     setDate(newValue);

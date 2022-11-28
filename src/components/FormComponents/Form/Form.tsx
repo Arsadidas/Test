@@ -1,16 +1,18 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
-import {SubmitHandler, useForm} from "react-hook-form";
-import {InputLabel, Select, TextField, MenuItem, SelectChangeEvent, Box, FormControl, Button} from "@mui/material";
-import Date from "../Date/Date";
+import React, {useState} from 'react';
 import {Dayjs} from "dayjs";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {SelectChangeEvent, Button} from "@mui/material";
+import {ITodo} from "../../MainBlock/MainBlock";
+import Date from "../Date/Date";
 import TextFieldInput from "../TextField/TextField";
-import {IStatus, ITodo} from "../../MainBlock/MainBlock";
+import SelectComponent from "../Select/Select";
 
 interface Props {
     array: ITodo[]
+    setActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Form: React.FC<Props> = ({array}) => {
+const Form: React.FC<Props> = ({array, setActive}) => {
 
     const [title, setTitle] = useState<string>('')
 
@@ -24,9 +26,8 @@ const Form: React.FC<Props> = ({array}) => {
 
     const [status, setStatus] = useState<string>('');
 
-    const {reset, register, handleSubmit, formState: {errors}, control} = useForm({mode: "onChange"})
+    const {reset, handleSubmit, control} = useForm({mode: "onChange"})
 
-    const ref = useRef<HTMLInputElement>(null)
 
     const handleChangePriority = (event: SelectChangeEvent) => {
         setPriority(event.target.value);
@@ -40,13 +41,12 @@ const Form: React.FC<Props> = ({array}) => {
         reset()
     }
 
-    const add = (data?: ITodo) => {
+    const add = () => {
         let start = startDate?.toISOString().substr(0, 10).split('-')
         let end = endDate?.toISOString().substr(0, 10).split('-')
 
         const currentStart = `${start![0]}-${start![1]}-${Number(start![2]) + 1}`
         const currentEnd = `${end![0]}-${end![1]}-${Number(end![2]) + 1}`
-
 
         const todo = {
             id: Number(Math.random()),
@@ -70,7 +70,6 @@ const Form: React.FC<Props> = ({array}) => {
 
     return (
         <div className='formBlock'>
-
             <form className={'form'} onSubmit={handleSubmit(onSubmit)}>
                 <TextFieldInput onChange={(e) => setTitle(e.target.value)} value={title} name={'title'}
                                 label={'Write Title'} control={control} marginBottom={3}
@@ -79,44 +78,23 @@ const Form: React.FC<Props> = ({array}) => {
                                 label={'Write Description'} control={control}
                                 marginBottom={3}
                                 width={250}/>
-                <Date date={startDate} setDate={setStartDate}/>
+                <Date label={'Write start day'} date={startDate} setDate={setStartDate}/>
 
-                <Date date={endDate} setDate={setEndDate}/>
+                <Date label={'Write end day '} date={endDate} setDate={setEndDate}/>
 
-                <Box sx={{width: 250, marginTop: 3}}>
-                    <FormControl fullWidth>
-                        <InputLabel id="priority">Priority</InputLabel>
-                        <Select
-                            labelId="priorityId"
-                            id="priority"
-                            value={priority}
-                            label="priority"
-                            onChange={handleChangePriority}
-                        >
-                            <MenuItem value={'Свободный'}>Свободный</MenuItem>
-                            <MenuItem value={'Важно'}>Важно</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
+                <SelectComponent width={250} id={'priority'} labelId={'priority'} value={priority}
+                                 onChange={handleChangePriority} label={'priority'} array={['Свободный', 'Важно']}/>
+                <SelectComponent width={250} id={'status'} labelId={'status'} value={status}
+                                 onChange={handleChangeStatus} label={'status'}
+                                 array={['В очереди', 'В процессе', 'Сделано']}/>
+                <div style={{maxWidth: 250, margin: '40px auto 0'}}>
 
-                <Box sx={{width: 250, marginTop: 3}}>
-                    <FormControl fullWidth>
-                        <InputLabel id="status">Status</InputLabel>
-                        <Select
-                            labelId="statusId"
-                            id="status"
-                            value={status}
-                            label="status"
-                            onChange={handleChangeStatus}
-                        >
-                            <MenuItem value={'В очереди'}>В очереди</MenuItem>
-                            <MenuItem value={'В процессе'}>В процессе</MenuItem>
-                            <MenuItem value={'Сделано'}>Сделано</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-
-                <Button onClick={() => add()}>Add</Button>
+                    <Button sx={{width: 250, padding: 1, marginLeft: 32}} variant={'contained'}
+                            onClick={() => {
+                                add()
+                                setActive(false)
+                            }}>Add</Button>
+                </div>
             </form>
         </div>
     );
