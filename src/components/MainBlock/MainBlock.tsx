@@ -25,18 +25,20 @@ const MainBlock: React.FC<ITodos> = ({array}) => {
 
     return (
         <div className='mainBlock'>
-            <div className="mainTitle">
-                All To do's
-            </div>
-            <span onClick={() => setActive(true)} className="add">
+            <div className='mainTitleBlock'>
+                <div className="mainTitle">
+                    All To do's
+                    <span onClick={() => setActive(true)} className="add">
                 <img src={ex} alt=""/>
             </span>
+                </div>
+            </div>
             <AllTodos todos={array}/>
             <Modal active={active} setActive={setActive}>
-                <ModalFunc setActive={setActive} array={array} />
+                <ModalFunc setActive={setActive} array={array}/>
             </Modal>
 
-            {array.length ? null : <div>The list is empty </div>}
+            {array.length ? null : <div style={{textAlign:"center", color:"red"}}>The list is empty! </div>}
         </div>
     );
 }

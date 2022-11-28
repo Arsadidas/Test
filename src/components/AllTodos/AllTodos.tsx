@@ -18,7 +18,7 @@ const AllTodos: React.FC<ITodos> = ({todos}) => {
                     {todos.map((item, index) => {
                         if (item.status === 'В очереди') {
                             return (
-                                <Link to={`/todo/${item.id}`}>
+                                <Link key={item.id} to={`/todo/${item.id}`}>
                                     <div
                                         style={{backgroundColor: item.priority === 'Важно' ? 'red' : 'antiquewhite'}}
                                         key={item.id} className="todoBodyText">
@@ -39,7 +39,7 @@ const AllTodos: React.FC<ITodos> = ({todos}) => {
                     {todos.map((item, index) => {
                         if (item.status === 'В процессе') {
                             return (
-                                <Link to={`/todo/${item.id}`}>
+                                <Link key={item.id} to={`/todo/${item.id}`}>
                                     <div
                                         style={{backgroundColor: item.priority === 'Важно' ? 'red' : 'antiquewhite'}}
                                         className="todoBodyText">
@@ -60,9 +60,8 @@ const AllTodos: React.FC<ITodos> = ({todos}) => {
                     {todos.map((item, index) => {
                         if (item.status === 'Сделано') {
                             return (
-                                <Link to={`/todo/${item.id}`}>
+                                <Link key={item.id} to={`/todo/${item.id}`}>
                                     <div style={{backgroundColor: item.priority === 'Важно' ? 'red' : 'antiquewhite'}}
-                                         key={item.id} draggable={true}
                                          className="todoBodyText"
                                     >
                                         {item.title} <br/>

@@ -23,8 +23,8 @@ const SelectComponent: React.FC<Props> = ({value, label, labelId, width, onChang
                     label={label}
                     onChange={onChange}
                 >
-                    {array?.map((item) => {
-                        return <MenuItem value={String(item)}>{item}</MenuItem>
+                    {array?.map((item, index) => {
+                        return <MenuItem key={index} value={String(item)}>{item}</MenuItem>
                     })}
                 </Select>
             </FormControl>

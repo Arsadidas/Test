@@ -6,6 +6,7 @@ import {ITodo} from "../../MainBlock/MainBlock";
 import Date from "../Date/Date";
 import TextFieldInput from "../TextField/TextField";
 import SelectComponent from "../Select/Select";
+import moment from "moment";
 
 interface Props {
     array: ITodo[]
@@ -66,6 +67,8 @@ const Form: React.FC<Props> = ({array, setActive}) => {
         setEndDate(null)
         setPriority('')
         setStatus('')
+        // console.log(moment().toISOString().substr(0, 10).split('-')
+        //     .map((item) => Number(item)).join('-').)
     }
 
     return (

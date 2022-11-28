@@ -3,6 +3,9 @@
 @function calcWidth1920($n)
   @return $n*math.div(100vw,1920)
 
+@function calcWidth768($n)
+  @return $n*math.div(100vh,768)
+
 @function calcWidth376($n)
   @return $n*math.div(100vw,376)
 
@@ -33,6 +36,7 @@ header
 //---------------------------------Header------>
 
 //---------------------------------Main------>
+
 .mainTitle
   position: relative
   margin: calcWidth1920(40) calcWidth1920(0)
@@ -44,7 +48,7 @@ header
   align-items: center
   cursor: pointer
   right: 500px
-  top: 119px
+  top: 0px
   font-size: 25px
   border-radius: 20px
   padding: 2px 7px
@@ -135,7 +139,7 @@ header
   .closeModal
     font-size: calcWidth1920(20)
     position: absolute
-    left: 900px
+    left: 950px
     top: 20px
 
     img
@@ -197,13 +201,14 @@ header
   bottom: 120px
   left: 310px
 
-@media screen and (max-width: 376px)
+@media screen and (max-width: 768px)
   .header
-    padding: calcWidth376(25)
+    padding: calcWidth768(20)
+
     .headerTitle
-      font-size: calcWidth376(18)
+      font-size: calcWidth768(18)
   .mainTitle
-    font-size: calcWidth376(20)
+    font-size: calcWidth768(15)
   .mainContent
     display: flex
     justify-content: space-between
@@ -216,13 +221,18 @@ header
     padding-bottom: 10px
 
     &:nth-child(1)
-      margin-top: calcWidth376(20)
-
+      margin-top: calcWidth768(20)
+  .queue, .development, .done
+    border: 2px solid brown
+    margin-bottom: calcWidth768(20)
+    border-radius: calcWidth768(12)
+    padding: calcWidth768(5)
   .curr
-    min-width: calcWidth376(300)
-    border-radius: calcWidth376(12)
+    min-width: calcWidth768(250)
+    min-height: calcWidth768(250)
+    border-radius: calcWidth768(12)
   .updBlock
-    max-width: calcWidth376(300)
-    padding: calcWidth376(20)
-    border-radius: calcWidth376(8)
+    max-width: calcWidth768(300)
+    padding: calcWidth768(20)
+    border-radius: calcWidth768(8)
     position: relative

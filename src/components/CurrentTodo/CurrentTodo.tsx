@@ -19,6 +19,9 @@ const CurrentTodo: React.FC<P> = ({state}) => {
 
     const actualTodo = state.find((item) => item.id === Number(id))
 
+    const todoDate = new Date(actualTodo?.dataEnd!).toISOString().slice(0, 10)
+
+    const actualDate = moment().toISOString().slice(0, 10)
 
     return (
         <div className={'currBlock'}>
@@ -38,15 +41,18 @@ const CurrentTodo: React.FC<P> = ({state}) => {
                 </div>
                 <div>
                     <b>Дата окончания:</b>
-                    {moment(actualTodo?.dataEnd).format("MMM Do YY")}
+                    {moment(actualTodo?.dataEnd).format("MMM D YY")}
                 </div>
                 <div onClick={() => setActive(true)}>
-                    <img className='upd' src={upd}
-                         alt="upd"/>
+                    <span>Редактировать:</span><img className='upd' src={upd}
+                                                    alt="upd"/>
                 </div>
                 <Modal active={active} setActive={setActive}>
                     <UpdateTodo setActive={setActive} state={state}/>
                 </Modal>
+                <div>{actualDate > todoDate ?
+                    <span style={{color: "red"}}><b>К сожалению срок выполнения истек</b></span> :
+                    <span style={{color: "green"}}>Активный</span>}</div>
             </div>
         </div>
     );
