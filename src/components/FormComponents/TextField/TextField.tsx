@@ -8,12 +8,13 @@ interface FormInputProps {
     name: string;
     label: string;
     control: any;
-    marginBottom: number
+    marginBottom?: number
     width: number
+    className?:string
 }
 
 const TextFieldInput = (props: FormInputProps) => {
-    const {name, control, label, marginBottom, width, onChange, value} = props;
+    const {name, control, label, marginBottom, width, onChange, value, className} = props;
 
     return (
         <Controller
@@ -27,6 +28,7 @@ const TextFieldInput = (props: FormInputProps) => {
                     label={label}
                     variant="outlined"
                     sx={{marginBottom, width, marginRight: 2}}
+                    className={className}
                 />
             )}
         />
